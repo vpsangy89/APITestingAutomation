@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "cb5c6c87-3afe-4052-9733-5a684c67452f",
+		"name": "API Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16825267"
+	},
+	"item": [
+		{
+			"name": "GET Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://heroku-app-us-admissions.herokuapp.com/api/650/4/2",
+					"protocol": "https",
+					"host": [
+						"heroku-app-us-admissions",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"650",
+						"4",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " { \"gre\":650, \"gpa\":4, \"rank\":2 }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://heroku-app-us-admissions.herokuapp.com/api",
+					"protocol": "https",
+					"host": [
+						"heroku-app-us-admissions",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Verify",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://heroku-app-us-admissions.herokuapp.com/api/7507",
+					"protocol": "https",
+					"host": [
+						"heroku-app-us-admissions",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"7507"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"id\":7507, \"gre\":800, \"gpa\":4, \"rank\":1 }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://heroku-app-us-admissions.herokuapp.com/api",
+					"protocol": "https",
+					"host": [
+						"heroku-app-us-admissions",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Verify",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://heroku-app-us-admissions.herokuapp.com/api/7507",
+					"protocol": "https",
+					"host": [
+						"heroku-app-us-admissions",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"7507"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Del",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":7507}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://heroku-app-us-admissions.herokuapp.com/api",
+					"protocol": "https",
+					"host": [
+						"heroku-app-us-admissions",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/124",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"124"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Users",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Lambda Req",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
