@@ -1,42 +1,101 @@
 {
 	"info": {
-		"_postman_id": "cb5c6c87-3afe-4052-9733-5a684c67452f",
+		"_postman_id": "817dda8e-a1b0-46b3-be38-4555b3b6cf96",
 		"name": "API Testing",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "16825267"
 	},
 	"item": [
 		{
-			"name": "GET Request",
+			"name": "GET Req",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"free\");\r",
+							"});\r",
+							"pm.test(\"Check JSON Data\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.id).to.eql(5);\r",
+							"});\r",
+							"pm.test(\"Check last name \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.last_name).to.eql(\"Howell\");\r",
+							"});\r",
+							"pm.test(\"Check url \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.support.url).contains(\"support-heading\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://heroku-app-us-admissions.herokuapp.com/api/650/4/2",
+					"raw": "https://reqres.in/api/users?id=5",
 					"protocol": "https",
 					"host": [
-						"heroku-app-us-admissions",
-						"herokuapp",
-						"com"
+						"reqres",
+						"in"
 					],
 					"path": [
 						"api",
-						"650",
-						"4",
-						"2"
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "5"
+						}
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "POST",
+			"name": "POST Req",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " { \"gre\":650, \"gpa\":4, \"rank\":2 }\r\n",
+					"raw": "{\r\n    \"data\": {\r\n        \"email\": \"smitha@test.in\",\r\n        \"first_name\": \"Smitha\",\r\n        \"last_name\": \"Menon\"\r\n    }\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -44,36 +103,15 @@
 					}
 				},
 				"url": {
-					"raw": "https://heroku-app-us-admissions.herokuapp.com/api",
+					"raw": "https://reqres.in/api/users",
 					"protocol": "https",
 					"host": [
-						"heroku-app-us-admissions",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST Verify",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://heroku-app-us-admissions.herokuapp.com/api/7507",
-					"protocol": "https",
-					"host": [
-						"heroku-app-us-admissions",
-						"herokuapp",
-						"com"
+						"reqres",
+						"in"
 					],
 					"path": [
 						"api",
-						"7507"
+						"users"
 					]
 				}
 			},
@@ -86,7 +124,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"id\":7507, \"gre\":800, \"gpa\":4, \"rank\":1 }",
+					"raw": "{\r\n\"data\": {        \r\n    \"id\": 5,\r\n    \"email\": \"smitha@test.in\",\r\n    \"first_name\": \"Test\",\r\n    \"last_name\": \"Name\"\r\n}\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -94,49 +132,29 @@
 					}
 				},
 				"url": {
-					"raw": "https://heroku-app-us-admissions.herokuapp.com/api",
+					"raw": "https://reqres.in/api/users/5",
 					"protocol": "https",
 					"host": [
-						"heroku-app-us-admissions",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PUT Verify",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://heroku-app-us-admissions.herokuapp.com/api/7507",
-					"protocol": "https",
-					"host": [
-						"heroku-app-us-admissions",
-						"herokuapp",
-						"com"
+						"reqres",
+						"in"
 					],
 					"path": [
 						"api",
-						"7507"
+						"users",
+						"5"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Del",
+			"name": "Delete",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"id\":7507}",
+					"raw": "\r\n{        \r\n    \"id\": 5\r\n}\r\n\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -144,22 +162,22 @@
 					}
 				},
 				"url": {
-					"raw": "https://heroku-app-us-admissions.herokuapp.com/api",
+					"raw": "https://reqres.in/api/users",
 					"protocol": "https",
 					"host": [
-						"heroku-app-us-admissions",
-						"herokuapp",
-						"com"
+						"reqres",
+						"in"
 					],
 					"path": [
-						"api"
+						"api",
+						"users"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "GET Users",
+			"name": "Lambda",
 			"event": [
 				{
 					"listen": "test",
@@ -167,6 +185,10 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"profession\");\r",
 							"});\r",
 							""
 						],
@@ -178,34 +200,30 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://reqres.in/api/users/124",
+					"raw": "https://lw0qsqpnfl.execute-api.ap-southeast-2.amazonaws.com/cnats/cnatsapi_resource?first_name=Smitha&last_name=Menon",
 					"protocol": "https",
 					"host": [
-						"reqres",
-						"in"
+						"lw0qsqpnfl",
+						"execute-api",
+						"ap-southeast-2",
+						"amazonaws",
+						"com"
 					],
 					"path": [
-						"api",
-						"users",
-						"124"
+						"cnats",
+						"cnatsapi_resource"
+					],
+					"query": [
+						{
+							"key": "first_name",
+							"value": "Smitha"
+						},
+						{
+							"key": "last_name",
+							"value": "Menon"
+						}
 					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST Users",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Lambda Req",
-			"request": {
-				"method": "GET",
-				"header": []
 			},
 			"response": []
 		}
