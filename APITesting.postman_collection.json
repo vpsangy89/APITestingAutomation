@@ -26,7 +26,7 @@
 							"});\r",
 							"pm.test(\"Check JSON Data\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.data.id).to.eql(5);\r",
+							"    pm.expect(jsonData.data.id).to.eql(12);\r",
 							"});\r",
 							"pm.test(\"Check last name \", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -49,7 +49,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://reqres.in/api/users?id=5",
+					"raw": "https://reqres.in/api/users?id=12",
 					"protocol": "https",
 					"host": [
 						"reqres",
@@ -62,7 +62,7 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "5"
+							"value": "12"
 						}
 					]
 				}
